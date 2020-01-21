@@ -7,40 +7,40 @@ public interface iRadio {
 	
 	/**
 	 * 
-	 * @return
+	 * @return Estacion actual
 	 */
 	public String estacionActual();
 	
 	/**
 	 * 
-	 * @return
+	 * @return estado de encendido/apagado
 	 */
 	public boolean estado();
 	
 	/**
-	 * 
+	 * apaga/enciende
 	 */
 	public void onOff();
 	
 	/**
-	 * 
+	 * Cambia frecuencia
 	 */
 	public void cambiarFrecuencia();
 	
 	/**
-	 * 
+	 * Avanza estacion
 	 */
 	public void avanzar();
 	
 	/**
-	 * 
+	 * Guarda estacion
 	 * @param boton
 	 */
 	public void guardar(int boton);
 	
 	/**
-	 * 
+	 * Selecciona la emisora
 	 */
-	public void seleccionarEmisora();
+	public void seleccionarEmisora(int boton);
 	
 }
