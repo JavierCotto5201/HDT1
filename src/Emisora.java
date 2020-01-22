@@ -1,17 +1,18 @@
 /**
  * 
- * @author 
+ * @author josej
  *
  */
-
 public class Emisora {
 	private String nombre;
 	private int frecuencia; // 1 FM   0 AM
+	private int orden;
 	
 	
-	public Emisora(String nombre, int frecuencia) {
+	public Emisora(String nombre, int frecuencia, int orden) {
 		this.nombre = nombre;
 		this.frecuencia = frecuencia;  // 1 FM   0 AM
+		this.orden = orden;
 	}
 
 
@@ -28,6 +29,22 @@ public class Emisora {
 	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+
+	/**
+	 * @return the orden
+	 */
+	public int getOrden() {
+		return orden;
+	}
+
+
+	/**
+	 * @param orden the orden to set
+	 */
+	public void setOrden(int orden) {
+		this.orden = orden;
 	}
 
 
