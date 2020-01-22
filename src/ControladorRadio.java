@@ -18,7 +18,7 @@ public class ControladorRadio implements iRadio {
 	 * 
 	 */
 	public ControladorRadio() {
-		encendido = false;
+		encendido = true;
 		frecuencia = 1; //    1 FM  0 AM
 		emisorasFavoritas = new Emisora[2][12];
 		emisorasTotales = new Emisora[2][20];
@@ -92,7 +92,9 @@ public class ControladorRadio implements iRadio {
 			
 			descripcionEstacion += emisorasTotales[frecuencia][posicion].getNombre();
 		}
-	
+		if(encendido == false) {
+			descripcionEstacion = "";   //PD se puede cambiar a un mensaje tipo 'RADIO APAGADA'
+		}
 		return descripcionEstacion;
 	}
 

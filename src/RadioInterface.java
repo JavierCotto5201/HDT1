@@ -10,11 +10,20 @@ import java.awt.Font;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JRadioButton;
 
 public class RadioInterface {
 
+	private JButton btnAdelante;
+	private JButton btnBoton1;
+	private JLabel lblEmisora;
 	private JFrame frame;
+	private iRadio radio;
+	private boolean verificadorGuardar;
+	
 
 	/**
 	 * Launch the application.
@@ -36,6 +45,8 @@ public class RadioInterface {
 	 * Create the application.
 	 */
 	public RadioInterface() {
+		radio = new ControladorRadio();
+		verificadorGuardar = false;
 		initialize();
 	}
 
@@ -53,12 +64,7 @@ public class RadioInterface {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JButton btnBoton1 = new JButton("1");
-		btnBoton1.setFont(new Font("BankGothic Lt BT", Font.BOLD, 15));
-		btnBoton1.setBackground(SystemColor.inactiveCaption);
-		btnBoton1.setForeground(Color.BLUE);
-		btnBoton1.setBounds(121, 179, 97, 25);
-		panel.add(btnBoton1);
+		
 		
 		JButton btnBoton2 = new JButton("2\r\n");
 		btnBoton2.setFont(new Font("BankGothic Lt BT", Font.BOLD, 15));
@@ -137,42 +143,70 @@ public class RadioInterface {
 		btnBoton12.setBounds(662, 214, 97, 25);
 		panel.add(btnBoton12);
 		
-		JButton btnAtras = new JButton("\u2039");
-		btnAtras.setBackground(SystemColor.inactiveCaption);
-		btnAtras.setFont(new Font("Arial", Font.BOLD, 55));
-		btnAtras.setForeground(new Color(0, 0, 255));
-		btnAtras.setBounds(12, 13, 97, 151);
-		panel.add(btnAtras);
 		
-		JButton btnAdelante = new JButton("\u203A");
-		btnAdelante.setBackground(SystemColor.inactiveCaption);
-		btnAdelante.setForeground(Color.BLUE);
-		btnAdelante.setFont(new Font("Arial", Font.BOLD, 55));
-		btnAdelante.setBounds(769, 13, 97, 151);
-		panel.add(btnAdelante);
 		
 		JPanel panelRadio = new JPanel();
 		panelRadio.setBackground(new Color(204, 255, 255));
-		panelRadio.setBounds(121, 13, 636, 151);
+		panelRadio.setBounds(12, 0, 636, 151);
 		panel.add(panelRadio);
 		panelRadio.setLayout(null);
 		
-		JLabel lblEmisora = new JLabel("AM");
+		JLabel lblEmisora = new JLabel("");
 		lblEmisora.setForeground(Color.BLUE);
 		lblEmisora.setFont(new Font("BankGothic Lt BT", Font.BOLD, 50));
-		lblEmisora.setBounds(12, 13, 591, 125);
+		lblEmisora.setBounds(33, 13, 591, 125);
 		panelRadio.add(lblEmisora);
 		
-		JRadioButton rbEncendido = new JRadioButton("");
-		rbEncendido.setBackground(Color.BLUE);
-		rbEncendido.setBounds(42, 196, 25, 25);
-		panel.add(rbEncendido);
+		JRadioButton rbGuardarCancion = new JRadioButton("");
+		rbGuardarCancion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {     // Radio    Button Listener 
+				verificadorGuardar = !verificadorGuardar;
+			}
+		});
+		rbGuardarCancion.setBackground(Color.BLUE);
+		rbGuardarCancion.setBounds(42, 196, 25, 25);
+		panel.add(rbGuardarCancion);
 		
-		JButton btnNewButton = new JButton("\u0398");
+		JButton btnNewButton = new JButton("AM/FM");
 		btnNewButton.setForeground(Color.BLUE);
 		btnNewButton.setBackground(SystemColor.inactiveCaption);
-		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 25));
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 18));
 		btnNewButton.setBounds(769, 179, 97, 60);
 		panel.add(btnNewButton);
+		
+		JLabel lblGuardarEstacion = new JLabel("<html>Guardar Estacion<html>");
+		lblGuardarEstacion.setBounds(32, 162, 65, 25);
+		panel.add(lblGuardarEstacion);
+		
+		JButton btnBoton1 = new JButton("1");    
+		btnBoton1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(verificadorGuardar) {
+					radio.guardar(1);
+				}
+				else {
+					radio.seleccionarEmisora(1);
+					lblEmisora.setText(radio.estacionActual());
+				}
+			}
+		});
+		btnBoton1.setFont(new Font("BankGothic Lt BT", Font.BOLD, 15));
+		btnBoton1.setBackground(SystemColor.inactiveCaption);
+		btnBoton1.setForeground(Color.BLUE);
+		btnBoton1.setBounds(121, 179, 97, 25);
+		panel.add(btnBoton1);
+		
+		JButton btnAdelante = new JButton("\u203A");
+		btnAdelante.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				radio.avanzar();
+				lblEmisora.setText(radio.estacionActual());
+			}
+		});
+		btnAdelante.setBackground(SystemColor.inactiveCaption);
+		btnAdelante.setForeground(Color.BLUE);
+		btnAdelante.setFont(new Font("Arial", Font.BOLD, 55));
+		btnAdelante.setBounds(662, 0, 97, 151);
+		panel.add(btnAdelante);
 	}
 }
