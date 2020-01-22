@@ -160,7 +160,7 @@ public class RadioInterface {
 		JLabel lblEmisora = new JLabel("AM");
 		lblEmisora.setForeground(Color.BLUE);
 		lblEmisora.setFont(new Font("BankGothic Lt BT", Font.BOLD, 50));
-		lblEmisora.setBounds(12, 13, 91, 125);
+		lblEmisora.setBounds(12, 13, 591, 125);
 		panelRadio.add(lblEmisora);
 		
 		JRadioButton rbEncendido = new JRadioButton("");
