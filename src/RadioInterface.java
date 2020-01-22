@@ -21,8 +21,11 @@ public class RadioInterface {
 	private JButton btnBoton1;
 	private JLabel lblEmisora;
 	private JFrame frame;
-	private iRadio radio;
+	
 	private boolean verificadorGuardar;
+	
+	iRadio radio = new ControladorRadio(); // esta es la linea que se debe de cambiar
+	
 	
 
 	/**
@@ -45,9 +48,10 @@ public class RadioInterface {
 	 * Create the application.
 	 */
 	public RadioInterface() {
-		radio = new ControladorRadio();
+		
 		verificadorGuardar = false;
 		initialize();
+		
 	}
 
 	/**
