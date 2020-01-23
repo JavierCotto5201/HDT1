@@ -1,5 +1,7 @@
 /**
- * @author josej
+ * Hoja de trabajo 1
+ * @author Jose Hurtarte
+ * @author Javier Coto
  *
  */
 
@@ -18,7 +20,7 @@ public class ControladorRadio implements iRadio {
 	 * 
 	 */
 	public ControladorRadio() {
-		encendido = true;
+		encendido = false;
 		frecuencia = 1; //    1 FM  0 AM
 		emisorasFavoritas = new Emisora[2][12];
 		emisorasTotales = new Emisora[2][20];
@@ -73,6 +75,9 @@ public class ControladorRadio implements iRadio {
 		
 	}
 
+	/**
+	 * Devuelve la estacion actual concatenada con la frecuencia
+	 */
 	@Override
 	public String estacionActual() {
 		String descripcionEstacion = "";
@@ -98,18 +103,27 @@ public class ControladorRadio implements iRadio {
 		return descripcionEstacion;
 	}
 
+	/**
+	 * devuelve true si esta encendido y false si esta apagada la radio
+	 */
 	@Override
 	public boolean estado() {
 	
 		return encendido;
 	}
 
+	/**
+	 * es un void que cambia el estado de encendido/apagado de la radio
+	 */
 	@Override
 	public void onOff() {
 		encendido = !encendido;
 
 	}
 
+	/**
+	 * cambia la frecuencia en la que se encuentra la radio
+	 */
 	@Override
 	public void cambiarFrecuencia() {
 		if(frecuencia == 0) {
@@ -122,6 +136,9 @@ public class ControladorRadio implements iRadio {
 
 	}
 
+	/**
+	 * avanza de estacion sin importar si es AM o FM
+	 */
 	@Override
 	public void avanzar() {
 		if(frecuencia == 0) {
@@ -140,6 +157,9 @@ public class ControladorRadio implements iRadio {
 
 	}
 
+	/**
+	 * Guarda la estacion en una posicion del Array de estaciones favoritas
+	 */
 	@Override
 	public void guardar(int boton) {
 		if(frecuencia == 0) {
@@ -152,6 +172,9 @@ public class ControladorRadio implements iRadio {
 
 	}
 
+	/**
+	 * selecciona una emisora del array de emisoras favoritas
+	 */
 	@Override
 	public void seleccionarEmisora(int boton) {
 		if(emisorasFavoritas[frecuencia][boton-1] != null) {
